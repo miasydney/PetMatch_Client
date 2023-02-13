@@ -20,8 +20,16 @@ const Animals = () => {
             .catch((err) => console.log(err))
     }, [])
 
+    // send delete request to remove listing using animal id
     const deleteAnimal = (id) => {
         console.log(id)
+
+        axios
+          .delete(`/animals/${id}`)
+          .then((res) => console.log(res))
+          .catch((err) => console.log(err));
+        
+        window.location.reload();
     }
     
 
