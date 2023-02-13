@@ -1,49 +1,161 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Card } from "react-bootstrap";
+import { Button, Card, Form, Modal } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 
 const Animals = () => {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate()
+  const [animals, setAnimals] = useState([]);
+  const [updatedAnimal, setUpdatedAnimal] = useState({})
 
-    const [animals, setAnimals] = useState([])
+  // Edit modal states
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
-    // retrieve animals list with get request to /animals from API
-    useEffect(() => {
-        axios.get("/animals")
-            .then((res) => {
-                console.log(res)
-                setAnimals(res.data)
-            })
-            .catch((err) => console.log(err))
-    }, [])
+  // retrieve animals list with get request to /animals from API
+  useEffect(() => {
+    axios
+      .get("/animals")
+      .then((res) => {
+        console.log(res);
+        setAnimals(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
-    // send delete request to remove listing using animal id
-    const deleteAnimal = (id) => {
-        console.log(id)
+  // Delete animal listing
+  const deleteAnimal = (id) => {
+    console.log(id);
 
-        axios
-          .delete(`/animals/${id}`)
-          .then((res) => console.log(res))
-          .catch((err) => console.log(err));
-        
-        window.location.reload();
+    axios
+      .delete(`/animals/${id}`)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+
+    window.location.reload();
+  };
+
+  // Update animal listing
+  const updateAnimal = (animal) => {
+      setUpdatedAnimal(animal);
+      handleShow()
+  };
+
+    const handleChange = (e) => {
+      const {name, value} = e.target
+
+      setUpdatedAnimal(prev => {
+          return {
+            ...prev,
+              [name]: value,
+        }
+    })
     }
-    
+
+    const saveUpdatedAnimal = () => {
+        console.log(updatedAnimal)
+
+        // 404 Error
+        // axios
+        //     .put(`/animals/${updatedAnimal._id}`, updatedAnimal)
+        //     .then((res) => console.log(res))
+        //     .catch((err) => console.log(err))
+
+        console.log("animal updated");
+
+        handleClose()
+        // window.location.reload()
+    }
 
   return (
-    <div style={{ width: "60%", margin: "auto auto", textAlign: "left"}}>
+    <div style={{ width: "60%", margin: "auto auto", textAlign: "left" }}>
       <Button variant="outline-dark" onClick={() => navigate(-1)}>
         BACK
       </Button>
+
+      {/* Edit Animal Listing form */}
+      <Modal show={show} onHide={handleClose} backdrop="static" size="lg">
+        <Modal.Header closeButton>
+          <Modal.Title>Update Animal Listing</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group>
+              <Form.Control
+                placeholder="name"
+                name="name"
+                value={updatedAnimal.name ? updatedAnimal.name : ""}
+                onChange={handleChange}
+              />
+              <Form.Control
+                placeholder="type"
+                name="type"
+                value={updatedAnimal.type ? updatedAnimal.type : ""}
+                onChange={handleChange}
+              />
+              <Form.Control
+                placeholder="Age"
+                name="age"
+                value={updatedAnimal.age ? updatedAnimal.age : ""}
+                onChange={handleChange}
+              />
+              <Form.Control
+                placeholder="Sex"
+                name="sex"
+                value={updatedAnimal.sex ? updatedAnimal.sex : ""}
+                onChange={handleChange}
+              />
+              <Form.Control
+                placeholder="Medications"
+                name="medications"
+                value={
+                  updatedAnimal.medications ? updatedAnimal.medications : ""
+                }
+                onChange={handleChange}
+              />
+              <Form.Control
+                placeholder="Notes"
+                name="notes"
+                value={updatedAnimal.notes ? updatedAnimal.notes : ""}
+                onChange={handleChange}
+              />
+              <Form.Control
+                placeholder="Photo"
+                name="photo"
+                value={updatedAnimal.photo ? updatedAnimal.photo : ""}
+                onChange={handleChange}
+              />
+              <Form.Select
+                value={
+                  updatedAnimal.adopted ? "Adopted!" : "Ready to adopt"
+                }
+                onChange={handleChange}
+              >
+                <option>Ready to adopt</option>
+                <option>Adopted!</option>
+              </Form.Select>
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={saveUpdatedAnimal}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
       <h1>Viewing all animals</h1>
       {animals ? (
         <>
           {animals.map((animal) => {
             return (
-                <div key={animal._id} style={{ padding: "1rem" }}>
+              <div key={animal._id} style={{ padding: "1rem" }}>
                 <Card>
                   {animal.photo ? (
                     <Card.Img
@@ -75,6 +187,9 @@ const Animals = () => {
                     >
                       <Button
                         variant="outline-info"
+                        onClick={() => {
+                          updateAnimal(animal);
+                        }}
                         style={{ marginRight: "1rem" }}
                       >
                         UPDATE

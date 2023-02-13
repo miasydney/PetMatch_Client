@@ -19,6 +19,7 @@ const AddAnimal = () => {
     });
 
 
+    // Handle form inputs
     const handleChange = (e) => {
         const { name, value } = e.target;
 
@@ -30,6 +31,7 @@ const AddAnimal = () => {
         })
     }
 
+    // Post animal data to API on form submission
     const handleSubmit = (e) => {
         e.preventDefault()
 
