@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import AddAnimal from './components/AddAnimal';
+import Animals from './components/Animals';
 import reportWebVitals from './reportWebVitals';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -14,7 +15,8 @@ root.render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/add-animal" element={<AddAnimal />} />
-        
+        <Route path="/animals" element={<Animals />} />
+
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

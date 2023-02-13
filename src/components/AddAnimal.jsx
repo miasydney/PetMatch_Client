@@ -39,10 +39,12 @@ const AddAnimal = () => {
         axios.post("/animals", animal)
         .then((res) => console.log(res))
         .catch((err) => console.log(err))
+        
+        navigate("animals")
     }
 
   return (
-    <div>
+    <div style={{width: "85%", margin: "auto auto", textAlign: "left"}}>
       <Button variant="outline-dark" onClick={() => navigate(-1)}>
         BACK
       </Button>
