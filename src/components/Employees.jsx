@@ -43,21 +43,25 @@ const Employees = () => {
       </Link>
 
       <h3>All Employees</h3>
-      <ul>
-        {employees.map((employee) => (
-          <li key={employee._id}>
-            <span>
-              {employee.username} ({employee.roles})
-            </span>
-            <Button
-              variant="outline-danger"
-              onClick={() => deleteEmployee(employee._id)}
-            >
-              Delete Account
-            </Button>
-          </li>
-        ))}
-      </ul>
+      {employees.length > 0 ? (
+        <ul>
+          {employees.map((employee) => (
+            <li key={employee._id}>
+              <span>
+                {employee.username} ({employee.roles})
+              </span>
+              <Button
+                variant="outline-danger"
+                onClick={() => deleteEmployee(employee._id)}
+              >
+                Delete Account
+              </Button>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>There are currently no employee accounts to display. </p>
+      )}
     </>
   );
 }

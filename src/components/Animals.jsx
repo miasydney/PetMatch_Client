@@ -154,7 +154,7 @@ const Animals = () => {
           </Modal>
 
           <h1>Viewing all animals</h1>
-          {animals ? (
+          {animals.length > 0 ? (
             <>
               {animals.map((animal) => {
                 return (
