@@ -29,7 +29,9 @@ const Employees = () => {
           return prev.filter((employee) => employee.id !== id);
         });
       })
-      .catch((err) => console.log(err));
+        .catch((err) => console.log(err));
+      
+    window.location.reload();
   };
 
   return (

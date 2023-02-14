@@ -33,7 +33,8 @@ const AddEmployee = () => {
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
 
-    navigate("/employees");
+      navigate("/employees");
+      window.location.reload();
   };
     
   // Note: Add front end validation to form to ensure that all fields are filled
