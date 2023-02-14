@@ -25,16 +25,13 @@ const AddEmployee = () => {
     });
   };
 
-  // Post employee data to API on form submission
+  // Post employee data to users on form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    console.log("employee data: ", employee);
-
-    // axios
-    //   .post("/users", employee)
-    //   .then((res) => console.log(res))
-    //   .catch((err) => console.log(err));
+    axios
+      .post("/users", employee)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
 
     navigate("/employees");
   };
@@ -49,7 +46,8 @@ const AddEmployee = () => {
         <h1>Add New Employee</h1>
         <p>
           You are creating a new employee account. All employees will have
-          access to create, edit and delete all animal listings from your database.
+          access to create, edit and delete all animal listings from your
+          database.
         </p>
         <Form>
           <Form.Group>
@@ -64,6 +62,7 @@ const AddEmployee = () => {
           <Form.Group>
             <Form.Label>Password</Form.Label>
             <Form.Control
+              type="password"
               name="password"
               value={employee.password}
               placeholder="Enter New Employee Password"
