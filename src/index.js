@@ -9,6 +9,7 @@ import Employees from './components/Employees';
 import reportWebVitals from './reportWebVitals';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import AddEmployee from './components/AddEmployee';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -20,6 +21,7 @@ root.render(
         <Route path="/animals" element={<Animals />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/employees" element={<Employees />} />
+        <Route path="/add-employee" element={<AddEmployee />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
