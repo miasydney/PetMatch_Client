@@ -35,6 +35,8 @@ const AddEmployee = () => {
 
     navigate("/employees");
   };
+    
+  // Note: Add front end validation to form to ensure that all fields are filled
 
   return (
     <>
