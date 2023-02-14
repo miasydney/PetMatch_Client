@@ -4,6 +4,8 @@ import './index.css';
 import App from './App';
 import AddAnimal from './components/AddAnimal';
 import Animals from './components/Animals';
+import Dashboard from './components/Dashboard';
+import Employees from './components/Employees';
 import reportWebVitals from './reportWebVitals';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -16,7 +18,8 @@ root.render(
         <Route path="/" element={<App />} />
         <Route path="/add-animal" element={<AddAnimal />} />
         <Route path="/animals" element={<Animals />} />
-
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/employees" element={<Employees />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
