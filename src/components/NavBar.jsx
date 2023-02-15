@@ -4,7 +4,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Button } from "react-bootstrap";
-
+import logo from '../assets/logo.jpg'
 
 const NavBar = () => {
 
@@ -13,7 +13,14 @@ const NavBar = () => {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
-        <Navbar.Brand onClick={() => navigate("/dashboard")}>logo</Navbar.Brand>
+        <Navbar.Brand onClick={() => navigate("/dashboard")}>
+          <img
+            src={logo}
+            height="50"
+            className="d-inline-block align-top"
+            alt="My Logo"
+          />
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
