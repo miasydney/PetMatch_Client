@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import AddAnimal from './components/AddAnimal';
-import Animals from './components/Animals';
+import AnimalList from './components/AnimalList';
 import Dashboard from './components/Dashboard';
 import Employees from './components/Employees';
 import reportWebVitals from './reportWebVitals';
@@ -18,7 +18,7 @@ root.render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/add-animal" element={<AddAnimal />} />
-        <Route path="/animals" element={<Animals />} />
+        <Route path="/animals" element={<AnimalList />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/employees" element={<Employees />} />
         <Route path="/add-employee" element={<AddEmployee />} />

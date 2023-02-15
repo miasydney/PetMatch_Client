@@ -1,11 +1,11 @@
 import './App.css';
-import AddAnimal from './components/AddAnimal';
+import Dashboard from './components/Dashboard';
 
 function App() {
   return (
     <div className="App">
       <h1>Home page</h1>
-      <AddAnimal />
+      <Dashboard />
     </div>
   );
 }
