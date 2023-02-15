@@ -2,6 +2,9 @@ import React, {useState, useEffect} from 'react'
 import NavBar from './NavBar'
 import axios from "axios";
 import { Card } from 'react-bootstrap';
+import getCurrentDate from "../utils/dateUtils.js";
+import getEarliestAnimals from '../utils/animalUtils';
+
 
 const Dashboard = () => {
   const [animals, setAnimals] = useState([]);
@@ -16,46 +19,42 @@ const Dashboard = () => {
       .catch((err) => console.log(err));
   }, []);
         
-    // Return list of animals that were created the earliest
-    function getEarliestAnimals() {
-    // Sort the animals by createdAt in ascending order (earliest to latest)
-    const sortedAnimals = animals.sort(
-        (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
-    );
-
-    const earliestAnimals = sortedAnimals.slice(0, 3);
-    
-    return earliestAnimals;
-    }
-        
-    const earliestAnimals = getEarliestAnimals();
+  // Return list of animals that were created the earliest   
+  const earliestAnimals = getEarliestAnimals(animals);
+  
+  // Return todays' date
+  const currentDate = getCurrentDate();
 
   return (
     <>
       <NavBar />
       <div style={{ width: "85%", margin: "auto auto", textAlign: "left" }}>
         <h1>User Dashboard</h1>
-        <p>Wednesday, 30 July</p>
+        <p>{currentDate}</p>
         <h3>Quick links</h3>
-        <p> - View all animals</p>
-        <p> - Add new animal</p>
-        {/* if user is Admin */}
-        <p> - Manage All Employee accounts </p>
-        <p> - Add New Employee account </p>
-
-        <h3>Longest residents</h3>
-        <p>
-          These animals have been with you the longest and are up for priority
-          adoption.
-        </p>
+        <ul>
+          <li>
+            <a href="/animals">View all animals</a>
+          </li>
+          <li>
+            <a href="/add-animal">Add new animal</a>
+          </li>
+          {/* if user is Admin */}
+          <li>
+            <a href="/employees">Manage All Employee accounts</a>
+          </li>
+          <li>
+            <a href="/add-employee">Add New Employee account</a>
+          </li>
+        </ul>
         <div>
           {earliestAnimals.length > 0 ? (
             <div className="card-container">
               {earliestAnimals.map((animal) => (
-                <div key={animal._id} className="card">
+                <Card key={animal._id}>
                   <h2>{animal.name}</h2>
                   <p>{animal.notes}</p>
-                </div>
+                </Card>
               ))}
             </div>
           ) : (
