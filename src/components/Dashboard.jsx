@@ -47,6 +47,12 @@ const Dashboard = () => {
             <a href="/add-employee">Add New Employee account</a>
           </li>
         </ul>
+
+        <h3>Longest residents</h3>
+        <p>
+          These animals have been with you the longest and are up for priority
+          adoption.
+        </p>
         <div>
           {earliestAnimals.length > 0 ? (
             <div className="card-container">
