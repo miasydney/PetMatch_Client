@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import { Form, Button } from 'react-bootstrap'
+import axios from 'axios'
 
 const Login = () => {
 
@@ -21,8 +22,8 @@ const Login = () => {
     // Check for errors and handle form submit
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(user)
-
+        console.log(user) // for testing. remove when testing complete!
+      
         let haveError = false
 
         // Set error messages if username or password not provided
@@ -45,6 +46,7 @@ const Login = () => {
             haveError = true;
         }
 
+      // Set error messages to null if no errors
         if (!haveError) {
           setErrorMessage({
             username: null,
@@ -52,26 +54,24 @@ const Login = () => {
             apiError: null,
           });
 
-          console.log("user logged in");
-          setUserFetched(true); // for testing purposes. Move to post request
 
           // Send user post request to log in
-
-          // axios
-          //     .post("/auth/login", user)
-          //     .then((res) => res.data)
-          // .then((json) => {
-          //     setUserFetched(true)
-          //     console.log(json)
-          // })
-          // .catch(() => {
-          // setErrorMessage((prevErrorMessage) => {
-          //     return {
-          //         ...prevErrorMessage,
-          //         apiError: "Invalid username or password"
-          //         }
-          //     })
-          // })
+          axios
+              .post("/users/login", user)
+              .then((res) => res.data)
+          .then((json) => {
+              setUserFetched(true)
+              localStorage.setItem("token", json.token) // store token in local storage
+              console.log(json)
+          })
+          .catch(() => {
+          setErrorMessage((prevErrorMessage) => {
+              return {
+                  ...prevErrorMessage,
+                  apiError: "Invalid username or password"
+                  }
+              })
+          })
         }
 
     }
