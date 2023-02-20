@@ -18,10 +18,9 @@ const Login = () => {
         apiError: null,
     })
 
-  const [userFetched, setUserFetched] = useState(false)
   
   // access dispatch method to be able to update states in global context
-  const { dispatch } = useGlobalContext()
+  const { store, dispatch } = useGlobalContext()
 
   // Sign in user on form submit
   const handleSubmit = (e) => {
@@ -62,7 +61,6 @@ const Login = () => {
         .post("/users/login/admin", user)
         .then((res) => res.data)
         .then((json) => {
-          setUserFetched(true);
           // set JWT token value in global state
           dispatch({
             type: "setToken",
@@ -93,7 +91,6 @@ const Login = () => {
               .post("/users/login", user)
               .then((res) => res.data)
               .then((json) => {
-                setUserFetched(true);
                 // set JWT token value in global state
                 dispatch({
                   type: "setToken",
@@ -144,7 +141,7 @@ const Login = () => {
 
     return (
       <>
-        {userFetched ? (
+        {store.token ? (
           <h3>Login Successful!</h3>
         ) : (
           <div>
