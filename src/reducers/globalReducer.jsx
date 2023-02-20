@@ -9,14 +9,14 @@ function globalReducer(state, action) {
         };
       }
       case "setLoggedInUserName": {
-        localStorage.setItem("username", action.data); // store username in local storage
+        localStorage.setItem("username", action.data || ''); // store username in local storage
         return {
           ...state,
           loggedInUserName: action.data,
         };
       }
         case "setUserRole": {
-          localStorage.setItem("userRole", action.data); // store user role in local storage
+          localStorage.setItem("userRole", action.data || ''); // store user role in local storage
           return {
             ...state,
             userRole: action.data,
