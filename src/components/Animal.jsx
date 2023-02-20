@@ -77,7 +77,9 @@ const Animal = ({ animal }) => {
                 <Form.Control
                   placeholder="type"
                   name="animalType"
-                  value={updatedAnimal.animalType ? updatedAnimal.animalType : ""}
+                  value={
+                    updatedAnimal.animalType ? updatedAnimal.animalType : ""
+                  }
                   onChange={handleChange}
                 />
                 <Form.Control
@@ -113,11 +115,12 @@ const Animal = ({ animal }) => {
                   onChange={handleChange}
                 />
                 <Form.Select
-                  value={updatedAnimal.adopted ? "Adopted!" : "Ready to adopt"}
+                  name="adopted"
+                  value={updatedAnimal.adopted}
                   onChange={handleChange}
                 >
-                  <option>Ready to adopt</option>
-                  <option>Adopted!</option>
+                  <option value={false}>Ready to adopt</option>
+                  <option value={true}>Adopted!</option>
                 </Form.Select>
               </Form.Group>
             </Form>
