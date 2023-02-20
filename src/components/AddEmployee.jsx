@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import NavBar from "./NavBar";
 
 const AddEmployee = () => {
   const navigate = useNavigate();
@@ -42,7 +41,6 @@ const AddEmployee = () => {
 
   return (
     <>
-      <NavBar />
       <div style={{ width: "85%", margin: "auto auto", textAlign: "left" }}>
         <Button variant="outline-dark" onClick={() => navigate(-1)}>
           BACK

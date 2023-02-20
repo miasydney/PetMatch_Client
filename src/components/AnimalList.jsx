@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Button} from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import NavBar from "./NavBar";
 import Animal from "./Animal";
 
 const AnimalList = () => {
@@ -22,7 +21,6 @@ const AnimalList = () => {
 
   return (
     <>
-      <NavBar />
       <div style={{ width: "60%", margin: "auto auto", textAlign: "left" }}>
         <Button variant="outline-dark" onClick={() => navigate(-1)}>
           BACK

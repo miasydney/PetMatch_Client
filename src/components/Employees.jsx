@@ -1,7 +1,6 @@
 import React, { useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
-import NavBar from './NavBar'
 import axios from 'axios'
 
 
@@ -36,7 +35,6 @@ const Employees = () => {
 
   return (
     <>
-      <NavBar />
       <h1>Manage Employees</h1>
       <Link to="/add-employee">
         <Button variant="outline-success">Add Employee</Button>

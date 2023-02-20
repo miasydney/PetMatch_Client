@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react'
-import NavBar from './NavBar'
 import axios from "axios";
 import { Card } from 'react-bootstrap';
 import getCurrentDate from "../utils/dateUtils.js";
@@ -31,7 +30,6 @@ const Dashboard = () => {
 
   return (
     <>
-      <NavBar />
       <div style={{ width: "85%", margin: "auto auto", textAlign: "left" }}>
         <h1>{store.userRole === "admin" ? "Admin" : "Employee"} Dashboard</h1>
         <p>{currentDate}</p>
