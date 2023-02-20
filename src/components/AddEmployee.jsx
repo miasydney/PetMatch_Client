@@ -34,7 +34,7 @@ const AddEmployee = () => {
       .catch((err) => console.log(err));
 
       navigate("/employees");
-      // window.location.reload();
+      window.location.reload();
   };
     
   // Note: Add front end validation to form to ensure that all fields are filled
