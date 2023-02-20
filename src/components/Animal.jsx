@@ -46,20 +46,20 @@ const Animal = ({ animal }) => {
   const saveUpdatedAnimal = () => {
     console.log(updatedAnimal);
 
-    // 404 Error
-    // axios
-    //     .put(`/animals/${updatedAnimal._id}`, updatedAnimal)
-    //     .then((res) => console.log(res))
-    //     .catch((err) => console.log(err))
+    // Send updated animal information to API
+    axios
+        .patch(`/animals/${updatedAnimal._id}`, updatedAnimal)
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err))
 
     console.log("animal updated");
 
     handleClose();
-    // window.location.reload()
+    window.location.reload()
   };
 
     return (
-        <>
+      <>
         {/* Update animal listing modal */}
         <Modal show={show} onHide={handleClose} backdrop="static" size="lg">
           <Modal.Header closeButton>
@@ -76,8 +76,8 @@ const Animal = ({ animal }) => {
                 />
                 <Form.Control
                   placeholder="type"
-                  name="type"
-                  value={updatedAnimal.type ? updatedAnimal.type : ""}
+                  name="animalType"
+                  value={updatedAnimal.animalType ? updatedAnimal.animalType : ""}
                   onChange={handleChange}
                 />
                 <Form.Control
@@ -131,7 +131,7 @@ const Animal = ({ animal }) => {
             </Button>
           </Modal.Footer>
         </Modal>
-            
+
         {/* Display individual animal card */}
         <div key={animal._id} style={{ padding: "1rem" }}>
           <Card>
