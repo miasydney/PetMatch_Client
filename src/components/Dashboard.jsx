@@ -4,11 +4,12 @@ import axios from "axios";
 import { Card } from 'react-bootstrap';
 import getCurrentDate from "../utils/dateUtils.js";
 import getEarliestAnimals from '../utils/animalUtils';
+import { useGlobalContext } from "../utils/globalStateContext";
 
 
 const Dashboard = () => {
+  // Retrieve list of animals from API
   const [animals, setAnimals] = useState([]);
-
   useEffect(() => {
     axios
       .get("/animals")
@@ -18,10 +19,13 @@ const Dashboard = () => {
       })
       .catch((err) => console.log(err));
   }, []);
-        
-  // Return list of animals that were created the earliest   
+
+  // Access the user's details from global context
+  const { store } = useGlobalContext();
+
+  // Return list of animals that were created the earliest
   const earliestAnimals = getEarliestAnimals(animals);
-  
+
   // Return todays' date
   const currentDate = getCurrentDate();
 
@@ -29,7 +33,7 @@ const Dashboard = () => {
     <>
       <NavBar />
       <div style={{ width: "85%", margin: "auto auto", textAlign: "left" }}>
-        <h1>User Dashboard</h1>
+        <h1>{store.userRole === "admin" ? "Admin" : "Employee"} Dashboard</h1>
         <p>{currentDate}</p>
         <h3>Quick links</h3>
         <ul>
@@ -39,13 +43,19 @@ const Dashboard = () => {
           <li>
             <a href="/add-animal">Add new animal</a>
           </li>
-          {/* if user is Admin */}
-          <li>
-            <a href="/employees">Manage All Employee accounts</a>
-          </li>
-          <li>
-            <a href="/add-employee">Add New Employee account</a>
-          </li>
+
+          {/* If user is Admin, allow manage employee options */}
+          {store.userRole === 'admin' && (
+          <>
+            <li>
+              <a href="/employees">Manage All Employee accounts</a>
+            </li>
+            <li>
+              <a href="/add-employee">Add New Employee account</a>
+            </li>
+          </>
+          )}
+
         </ul>
 
         <h3>Longest residents</h3>
