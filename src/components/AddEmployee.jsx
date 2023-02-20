@@ -10,7 +10,7 @@ const AddEmployee = () => {
   const [employee, setEmployee] = useState({
     username: "",
     password: "",
-    roles: "",
+    isAdmin: false,
   });
 
   // Handle form inputs
@@ -33,8 +33,9 @@ const AddEmployee = () => {
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
 
+    console.log(employee)
       navigate("/employees");
-      window.location.reload();
+      // window.location.reload();
   };
     
   // Note: Add front end validation to form to ensure that all fields are filled
@@ -75,13 +76,15 @@ const AddEmployee = () => {
           <Form.Group>
             <Form.Label>Role</Form.Label>
             <Form.Select
-              name="roles"
-              value={employee.roles}
-              onChange={handleChange}
+              name="isAdmin"
+              value={employee.isAdmin}
+              onChange={(e) =>
+                setEmployee({ ...employee, isAdmin: e.target.value === "true" })
+              }
             >
               <option value="">Select a role</option>
-              <option value="Employee">Employee</option>
-              <option value="Admin">Admin</option>
+              <option value={false}>Employee</option>
+              <option value={true}>Admin</option>
             </Form.Select>
             <Form.Text>
               *Admin users will have access to manage employee accounts.

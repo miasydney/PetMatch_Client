@@ -112,38 +112,44 @@ const Login = () => {
 
     return (
       <>
-        <h1>Employee Login</h1>
-        <Form>
-          <Form.Group>
-            <Form.Label>Username</Form.Label>
-            <Form.Control
-              name="username"
-              value={user.username}
-              placeholder="Enter Your Username"
-              onChange={handleChange}
-            ></Form.Control>
-            {errorMessage.username}
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              name="password"
-              value={user.password}
-              placeholder="Enter Your Password"
-              onChange={handleChange}
-            ></Form.Control>
-            {errorMessage.password}
-            </Form.Group>
-            {errorMessage.apiError}
-          <Button
-            variant="outline-success"
-            type="submit"
-            onClick={handleSubmit}
-          >
-            LOG IN
-          </Button>
-        </Form>
+        {userFetched ? (
+          <h3>Login Successful!</h3>
+        ) : (
+          <div>
+            <h1>Employee Login</h1>
+            <Form>
+              <Form.Group>
+                <Form.Label>Username</Form.Label>
+                <Form.Control
+                  name="username"
+                  value={user.username}
+                  placeholder="Enter Your Username"
+                  onChange={handleChange}
+                ></Form.Control>
+                {errorMessage.username}
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  name="password"
+                  value={user.password}
+                  placeholder="Enter Your Password"
+                  onChange={handleChange}
+                ></Form.Control>
+                {errorMessage.password}
+              </Form.Group>
+              {errorMessage.apiError}
+              <Button
+                variant="outline-success"
+                type="submit"
+                onClick={handleSubmit}
+              >
+                LOG IN
+              </Button>
+            </Form>
+          </div>
+        )}
       </>
     );
 }
