@@ -2,8 +2,11 @@ import React, {useState} from 'react'
 import { Form, Button } from 'react-bootstrap'
 import axios from 'axios'
 import { useGlobalContext } from '../utils/globalStateContext'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
+
+  const navigate = useNavigate()
 
     // Set initial user states
     const [user, setUser] = useState({
@@ -77,6 +80,7 @@ const Login = () => {
             data: "admin" // data: user.isAdmin ? "admin" : "employee",
           });
           console.log(json);
+          navigate("/dashboard")
         })
         .catch((error) => {
           if (
@@ -106,6 +110,7 @@ const Login = () => {
                   type: "setUserRole",
                   data: "employee"
                 });
+                navigate("/dashboard");
                 console.log(json);
               })
               .catch(() => {
