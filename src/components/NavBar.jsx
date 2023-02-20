@@ -5,10 +5,14 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Button } from "react-bootstrap";
 import logo from '../assets/logo.jpg'
+import { useGlobalContext } from '../utils/globalStateContext';
 
 const NavBar = () => {
 
   const navigate = useNavigate();
+
+  // access the user's details from global context
+  const { store } = useGlobalContext()
 
   return (
     <Navbar bg="light" expand="lg">
@@ -34,11 +38,15 @@ const NavBar = () => {
               Add New Animal
             </Nav.Link>
 
-            {/* if signed in user is Admin           */}
-            <Nav.Link onClick={() => navigate("/employees")}>
-              Manage Employees
-            </Nav.Link>
+            {/* Show manage employees link if signed in user is Admin           */}
+            {store.userRole === "admin" && (
+              <Nav.Link onClick={() => navigate("/employees")}>
+                Manage Employees
+              </Nav.Link>
+            )}
+            
           </Nav>
+          {store.loggedInUserName}
           <Button>LOG OUT</Button>
         </Navbar.Collapse>
       </Container>

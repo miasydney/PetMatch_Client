@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { Form, Button } from 'react-bootstrap'
 import axios from 'axios'
+import { useGlobalContext } from '../utils/globalStateContext'
 
 const Login = () => {
 
@@ -17,7 +18,10 @@ const Login = () => {
         apiError: null,
     })
 
-    const [userFetched, setUserFetched] = useState(false)
+  const [userFetched, setUserFetched] = useState(false)
+  
+  // access dispatch method to be able to update states in global context
+  const { dispatch } = useGlobalContext()
 
   // Sign in user on form submit
   const handleSubmit = (e) => {
@@ -59,7 +63,21 @@ const Login = () => {
         .then((res) => res.data)
         .then((json) => {
           setUserFetched(true);
-          localStorage.setItem("token", json.token); // store token in local storage
+          // set JWT token value in global state
+          dispatch({
+            type: "setToken",
+            data: json.token,
+          });
+          // set username value in global state
+          dispatch({
+            type: "setLoggedInUserName",
+            data: user.username
+          })
+          // set user role to admin in global state
+          dispatch({
+            type: "setUserRole",
+            data: "admin" // data: user.isAdmin ? "admin" : "employee",
+          });
           console.log(json);
         })
         .catch((error) => {
@@ -76,7 +94,21 @@ const Login = () => {
               .then((res) => res.data)
               .then((json) => {
                 setUserFetched(true);
-                localStorage.setItem("token", json.token); // store token in local storage
+                // set JWT token value in global state
+                dispatch({
+                  type: "setToken",
+                  data: json.token,
+                });
+                // set username value in global state
+                dispatch({
+                  type: "setLoggedInUserName",
+                  data: user.username,
+                });
+                // set user role to employee in global state
+                dispatch({
+                  type: "setUserRole",
+                  data: "employee"
+                });
                 console.log(json);
               })
               .catch(() => {
