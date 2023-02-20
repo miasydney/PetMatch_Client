@@ -12,7 +12,7 @@ const NavBar = () => {
   const navigate = useNavigate();
 
   // access the user's details from global context
-  const { store } = useGlobalContext()
+  const { store, dispatch } = useGlobalContext()
 
   return (
     <Navbar bg="light" expand="lg">
@@ -44,10 +44,28 @@ const NavBar = () => {
                 Manage Employees
               </Nav.Link>
             )}
-            
           </Nav>
           {store.loggedInUserName}
-          <Button>LOG OUT</Button>
+          
+          {/* Show log out button if user is logged in */}
+          {store.loggedInUserName && (
+            <Button onClick={() => {
+              console.log("logged out")
+              // set token to null when user has logged out
+              dispatch({
+                type: 'setToken',
+                data: null
+              })
+              dispatch({
+                type: "setLoggedInUserName",
+                data: null,
+              })
+              dispatch({
+                type: "setUserRole",
+                data: null,
+              });
+          }}>LOG OUT</Button>
+          )}
         </Navbar.Collapse>
       </Container>
     </Navbar>
