@@ -48,7 +48,7 @@ const Employees = () => {
           {employees.map((employee) => (
             <li key={employee._id}>
               <span>
-                {employee.username} ({employee.roles})
+                {employee.username} ({employee.isAdmin ? ("Admin") : ("Employee")})
               </span>
               <Button
                 variant="outline-danger"
