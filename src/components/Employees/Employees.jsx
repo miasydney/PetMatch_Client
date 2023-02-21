@@ -1,8 +1,10 @@
 import React, { useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
-import { Button, Form, Modal } from 'react-bootstrap'
+import { Button, Form, Modal, Card, Table } from "react-bootstrap";
 import axios from 'axios'
-
+import { FaUserPlus } from "react-icons/fa";
+import { BsExclamationTriangleFill } from "react-icons/bs";
+import "./employees.css"
 
 const Employees = () => {
   const [employees, setEmployees] = useState([]);
@@ -68,7 +70,7 @@ const Employees = () => {
   };
 
   return (
-    <>
+    <div id="employee-div">
       {/* Edit employee modal */}
       <Modal show={showEditModal} onHide={handleCloseEditModal}>
         <Modal.Header closeButton>
@@ -110,38 +112,63 @@ const Employees = () => {
       </Modal>
 
       <h1>Manage Employees</h1>
-      <Link to="/add-employee">
-        <Button variant="outline-success">Add Employee</Button>
-      </Link>
+      <Card className="add-employee-card">
+        <Link to="/add-employee">
+          <FaUserPlus />
+          <p>Add New Employee Account</p>
+        </Link>
+      </Card>
 
-      <h3>All Employees</h3>
-      {employees.length > 0 ? (
-        <ul>
-          {employees.map((employee) => (
-            <li key={employee._id}>
-              <span>
-                {employee.username} ({employee.isAdmin ? "Admin" : "Employee"})
-              </span>
-              <Button
-                variant="outline-info"
-                onClick={() => updateEmployee(employee)}
-                style={{ marginRight: "1rem" }}
-              >
-                Edit
-              </Button>
-              <Button
-                variant="outline-danger"
-                onClick={() => deleteEmployee(employee._id)}
-              >
-                Delete Account
-              </Button>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>There are currently no employee accounts to display. </p>
-      )}
-    </>
+      <Card>
+        <h2 id="employee-header">All Employees</h2>
+        <p id="info">
+          <BsExclamationTriangleFill />
+          Please note that once you delete an employee account, the account will
+          be permanently removed from your database and the user will no longer be able to sign in
+          or access any information.
+        </p>
+        <div id="employee-table">
+          {employees.length > 0 ? (
+            <ul>
+              <Table striped bordered hover variant="dark">
+                <thead>
+                  <tr>
+                    <th>Username</th>
+                    <th>Access Level</th>
+                    <th>Account Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {employees.map((employee) => (
+                    <tr>
+                      <td>{employee.username}</td>
+                      <td> {employee.isAdmin ? "Admin" : "Employee"}</td>
+                      <td>
+                        <Button
+                          variant="outline-info"
+                          onClick={() => updateEmployee(employee)}
+                          style={{ marginRight: "1rem" }}
+                        >
+                          Edit
+                        </Button>
+                        <Button
+                          variant="outline-danger"
+                          onClick={() => deleteEmployee(employee._id)}
+                        >
+                          Delete Account
+                        </Button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            </ul>
+          ) : (
+            <p>There are currently no employee accounts to display. </p>
+          )}
+        </div>
+      </Card>
+    </div>
   );
 }
 

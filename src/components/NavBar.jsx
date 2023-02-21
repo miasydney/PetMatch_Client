@@ -45,26 +45,32 @@ const NavBar = () => {
               </Nav.Link>
             )}
           </Nav>
-          {store.loggedInUserName}
-          
+          <Navbar.Text>
+            Signed in as: {store.loggedInUserName}
+          </Navbar.Text>
+
           {/* Show log out button if user is logged in */}
           {store.loggedInUserName && (
-            <Button onClick={() => {
-              console.log("logged out")
-              // set token to null when user has logged out
-              dispatch({
-                type: 'setToken',
-                data: null
-              })
-              dispatch({
-                type: "setLoggedInUserName",
-                data: null,
-              })
-              dispatch({
-                type: "setUserRole",
-                data: null,
-              });
-          }}>LOG OUT</Button>
+            <Button
+              onClick={() => {
+                console.log("logged out");
+                // set token to null when user has logged out
+                dispatch({
+                  type: "setToken",
+                  data: null,
+                });
+                dispatch({
+                  type: "setLoggedInUserName",
+                  data: null,
+                });
+                dispatch({
+                  type: "setUserRole",
+                  data: null,
+                });
+              }}
+            >
+              LOG OUT
+            </Button>
           )}
         </Navbar.Collapse>
       </Container>

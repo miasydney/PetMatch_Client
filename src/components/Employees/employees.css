@@ -1,0 +1,40 @@
+#employee-div {
+    width: 85%;
+    margin: auto auto;
+    text-align: left;
+}
+
+#employee-table {
+    width: 95%;
+    margin: auto auto;
+} 
+
+#employee-header {
+    padding: 30px;
+}
+
+#info {
+    margin: auto auto;
+    width: 90%;
+    padding-bottom: 40px;
+}
+
+.add-employee-card {
+    background-color: #fff;
+    padding-top: 20px;
+    margin-top: 40px;
+    font-weight: bold;
+    width: 30%;
+    margin-bottom: 30px;
+    box-shadow: 0px 0px 10px rgba(243, 243, 243, 0.1);
+}
+
+.add-employee-card a {
+    color: black;
+    text-decoration: none;
+    padding-left: 15px;
+}
+
+.add-employee-card a:hover {
+    color: #9fb9c6;
+}

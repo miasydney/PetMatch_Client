@@ -14,7 +14,7 @@ import {
 import NotFound from "./components/NotFound";
 import AddAnimal from "./components/AddAnimal";
 import AnimalList from "./components/AnimalList";
-import Employees from "./components/Employees";
+import Employees from "./components/Employees/Employees";
 import AddEmployee from "./components/AddEmployee";
 import Footer from "./components/Footer/Footer";
 

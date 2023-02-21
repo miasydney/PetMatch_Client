@@ -148,7 +148,7 @@ const Login = () => {
         <h3>Login Successful!</h3>
       ) : (
         <div className="login-container">
-          <Form>
+          <Form className="login-form">
             <img className="logo" src={logo} alt="Logo" />
             <h1>Employee Login</h1>
             <Form.Group>

@@ -68,12 +68,14 @@ const Animal = ({ animal }) => {
           <Modal.Body>
             <Form>
               <Form.Group>
+                <Form.Label>Name</Form.Label>
                 <Form.Control
                   placeholder="name"
                   name="name"
                   value={updatedAnimal.name ? updatedAnimal.name : ""}
                   onChange={handleChange}
                 />
+                <Form.Label>Type</Form.Label>
                 <Form.Control
                   placeholder="type"
                   name="animalType"
@@ -82,18 +84,21 @@ const Animal = ({ animal }) => {
                   }
                   onChange={handleChange}
                 />
+                <Form.Label>Age</Form.Label>
                 <Form.Control
                   placeholder="Age"
                   name="age"
                   value={updatedAnimal.age ? updatedAnimal.age : ""}
                   onChange={handleChange}
                 />
+                <Form.Label>Sex</Form.Label>
                 <Form.Control
                   placeholder="Sex"
                   name="sex"
                   value={updatedAnimal.sex ? updatedAnimal.sex : ""}
                   onChange={handleChange}
                 />
+                <Form.Label>Medications</Form.Label>
                 <Form.Control
                   placeholder="Medications"
                   name="medications"
@@ -102,18 +107,21 @@ const Animal = ({ animal }) => {
                   }
                   onChange={handleChange}
                 />
+                <Form.Label>Notes</Form.Label>
                 <Form.Control
                   placeholder="Notes"
                   name="notes"
                   value={updatedAnimal.notes ? updatedAnimal.notes : ""}
                   onChange={handleChange}
                 />
+                <Form.Label>Photo</Form.Label>
                 <Form.Control
                   placeholder="Photo"
                   name="photo"
                   value={updatedAnimal.photo ? updatedAnimal.photo : ""}
                   onChange={handleChange}
                 />
+                <Form.Label>Adoption Status</Form.Label>
                 <Form.Select
                   name="adopted"
                   value={updatedAnimal.adopted}
@@ -144,11 +152,14 @@ const Animal = ({ animal }) => {
               <p>"No image to display"</p>
             )}
             <Card.Body>
-              <Card.Header>{animal.name}</Card.Header>
+              <Card.Header>
+                <h3>{animal.name}</h3>
+              </Card.Header>
               <br />
               <Card.Title>Type</Card.Title>
               <Card.Text>{animal.animalType}</Card.Text>
-              <Card.Title>{animal.age} years old</Card.Title>
+              <Card.Title>Age</Card.Title>
+              <Card.Text>{animal.age} years old</Card.Text>
               <Card.Title>Sex</Card.Title>
               <Card.Text>{animal.sex}</Card.Text>
               <Card.Title>Medication</Card.Title>
@@ -159,28 +170,30 @@ const Animal = ({ animal }) => {
               <Card.Text>
                 {animal.adopted ? "Adopted!" : "Ready to adopt"}
               </Card.Text>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "flex-end",
-                }}
-              >
-                <Button
-                  variant="outline-info"
-                  onClick={() => {
-                    updateAnimal(animal);
+              <Card.Footer>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "flex-end",
                   }}
-                  style={{ marginRight: "1rem" }}
                 >
-                  UPDATE
-                </Button>
-                <Button
-                  onClick={() => deleteAnimal(animal._id)}
-                  variant="outline-danger"
-                >
-                  DELETE
-                </Button>
-              </div>
+                  <Button
+                    variant="outline-info"
+                    onClick={() => {
+                      updateAnimal(animal);
+                    }}
+                    style={{ marginRight: "1rem" }}
+                  >
+                    UPDATE
+                  </Button>
+                  <Button
+                    onClick={() => deleteAnimal(animal._id)}
+                    variant="outline-danger"
+                  >
+                    DELETE
+                  </Button>
+                </div>
+              </Card.Footer>
             </Card.Body>
           </Card>
           <br />

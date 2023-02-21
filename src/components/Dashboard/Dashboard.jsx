@@ -32,7 +32,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <div style={{ width: "85%", margin: "auto auto", textAlign: "left" }}>
+      <div id="dash-div">
         <h1>{store.userRole === "admin" ? "Admin" : "Employee"} Dashboard</h1>
         <p>You are currently signed in as {store.loggedInUserName}.</p>
         <p>{currentDate}</p>

@@ -21,7 +21,7 @@ const AnimalList = () => {
 
   return (
     <>
-      <div style={{ width: "60%", margin: "auto auto", textAlign: "left" }}>
+      <div style={{ width: "70%", margin: "auto auto", textAlign: "left" }}>
         <Button variant="outline-dark" onClick={() => navigate(-1)}>
           BACK
         </Button>
