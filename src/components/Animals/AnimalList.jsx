@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Button} from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Animal from "./Animal";
 
 const AnimalList = () => {
-  const navigate = useNavigate();
   const [animals, setAnimals] = useState([]);
 
   // Retrieve list of all animals
@@ -22,10 +19,6 @@ const AnimalList = () => {
   return (
     <>
       <div style={{ width: "70%", margin: "auto auto", textAlign: "left" }}>
-        <Button variant="outline-dark" onClick={() => navigate(-1)}>
-          BACK
-        </Button>
-
         <h1>Viewing all animals</h1>
         {animals.length > 0 ? (
           <>

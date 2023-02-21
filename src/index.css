@@ -19,3 +19,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* global styles */
+
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
+  background-color: #9fb9c6;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  margin-top: 25px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #80959f;
+}
+
+.error-message {
+  color: #dc3545;
+  margin-top: 10px;
+  font-size: 16px;
+}

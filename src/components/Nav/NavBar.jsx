@@ -1,18 +1,18 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Button } from "react-bootstrap";
-import logo from '../assets/logo.jpg'
-import { useGlobalContext } from '../utils/globalStateContext';
+import logo from "../../assets/logo.jpg";
+import { useGlobalContext } from "../../utils/globalStateContext";
+import "./navbar.css";
 
 const NavBar = () => {
-
   const navigate = useNavigate();
 
   // access the user's details from global context
-  const { store, dispatch } = useGlobalContext()
+  const { store, dispatch } = useGlobalContext();
 
   return (
     <Navbar bg="light" expand="lg">
@@ -20,7 +20,8 @@ const NavBar = () => {
         <Navbar.Brand onClick={() => navigate("/dashboard")}>
           <img
             src={logo}
-            height="50"
+            height="80"
+            style={{ paddingTop: "0.5rem" }}
             className="d-inline-block align-top"
             alt="My Logo"
           />
@@ -45,13 +46,12 @@ const NavBar = () => {
               </Nav.Link>
             )}
           </Nav>
-          <Navbar.Text>
-            Signed in as: {store.loggedInUserName}
-          </Navbar.Text>
+          <Navbar.Text>Signed in as: {store.loggedInUserName}</Navbar.Text>
 
           {/* Show log out button if user is logged in */}
           {store.loggedInUserName && (
             <Button
+              id="logout-btn"
               onClick={() => {
                 console.log("logged out");
                 // set token to null when user has logged out
@@ -76,6 +76,6 @@ const NavBar = () => {
       </Container>
     </Navbar>
   );
-}
+};
 
-export default NavBar
+export default NavBar;

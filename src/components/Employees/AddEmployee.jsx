@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import BackBtn from "../BackBtn";
 
 const AddEmployee = () => {
   const navigate = useNavigate();
@@ -32,19 +33,17 @@ const AddEmployee = () => {
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
 
-    console.log(employee)
-      navigate("/employees");
-      // window.location.reload();
+    console.log(employee);
+    navigate("/employees");
+    // window.location.reload();
   };
-    
+
   // Note: Add front end validation to form to ensure that all fields are filled
 
   return (
     <>
       <div style={{ width: "85%", margin: "auto auto", textAlign: "left" }}>
-        <Button variant="outline-dark" onClick={() => navigate(-1)}>
-          BACK
-        </Button>
+        <BackBtn />
         <h1>Add New Employee</h1>
         <p>
           You are creating a new employee account. All employees will have

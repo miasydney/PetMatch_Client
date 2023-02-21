@@ -4,7 +4,7 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import Login from "./components/Login/Login";
 import globalReducer from "./reducers/globalReducer";
 import { GlobalContext } from "./utils/globalStateContext";
-import NavBar from "./components/NavBar";
+import NavBar from "./components/Nav/NavBar";
 import { Outlet, Route } from "react-router-dom";
 import {
   createBrowserRouter,
@@ -12,10 +12,10 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import NotFound from "./components/NotFound";
-import AddAnimal from "./components/AddAnimal";
-import AnimalList from "./components/AnimalList";
+import AddAnimal from "./components/Animals/AddAnimal";
+import AnimalList from "./components/Animals/AnimalList";
 import Employees from "./components/Employees/Employees";
-import AddEmployee from "./components/AddEmployee";
+import AddEmployee from "./components/Employees/AddEmployee";
 import Footer from "./components/Footer/Footer";
 
 function App() {
