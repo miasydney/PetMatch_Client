@@ -1,0 +1,19 @@
+
+.quick-links-card {
+    background-color: #fff;
+    padding: 20px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    margin-bottom: 30px;
+    box-shadow: 0px 0px 10px rgba(243, 243, 243, 0.1);
+}
+
+.quick-links-card a {
+    color: black;
+    text-decoration: none;
+    padding-left: 15px;
+}
+
+.quick-links-card a:hover {
+    color: 9fb9c6;
+}

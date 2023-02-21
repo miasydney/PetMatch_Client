@@ -1,29 +1,29 @@
-import React, {useState} from 'react'
-import { Form, Button } from 'react-bootstrap'
-import axios from 'axios'
-import { useGlobalContext } from '../utils/globalStateContext'
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from "react";
+import { Form, Button } from "react-bootstrap";
+import axios from "axios";
+import { useGlobalContext } from "../../utils/globalStateContext";
+import { useNavigate } from "react-router-dom";
+import "./login.css";
+import logo from "../../assets/logo.jpg";
 
 const Login = () => {
+  const navigate = useNavigate();
 
-  const navigate = useNavigate()
+  // Set initial user states
+  const [user, setUser] = useState({
+    username: "",
+    password: "",
+  });
 
-    // Set initial user states
-    const [user, setUser] = useState({
-        username: "",
-        password: "",
-    })
+  // Set initial values for errors
+  const [errorMessage, setErrorMessage] = useState({
+    username: null,
+    password: null,
+    apiError: null,
+  });
 
-    // Set initial values for errors
-    const [errorMessage, setErrorMessage] = useState({
-        username: null,
-        password: null,
-        apiError: null,
-    })
-
-  
   // access dispatch method to be able to update states in global context
-  const { store, dispatch } = useGlobalContext()
+  const { store, dispatch } = useGlobalContext();
 
   // Sign in user on form submit
   const handleSubmit = (e) => {
@@ -72,15 +72,15 @@ const Login = () => {
           // set username value in global state
           dispatch({
             type: "setLoggedInUserName",
-            data: user.username
-          })
+            data: user.username,
+          });
           // set user role to admin in global state
           dispatch({
             type: "setUserRole",
-            data: "admin" // data: user.isAdmin ? "admin" : "employee",
+            data: "admin", // data: user.isAdmin ? "admin" : "employee",
           });
           console.log(json);
-          navigate("/dashboard")
+          navigate("/dashboard");
         })
         .catch((error) => {
           if (
@@ -108,7 +108,7 @@ const Login = () => {
                 // set user role to employee in global state
                 dispatch({
                   type: "setUserRole",
-                  data: "employee"
+                  data: "employee",
                 });
                 navigate("/dashboard");
                 console.log(json);
@@ -133,59 +133,58 @@ const Login = () => {
     }
   };
 
-  
+  const handleChange = (e) => {
+    setUser((prevUser) => {
+      return {
+        ...prevUser,
+        [e.target.name]: e.target.value,
+      };
+    });
+  };
 
-    const handleChange = (e) => {
-        setUser((prevUser) => {
-            return {
-                ...prevUser,
-                [e.target.name]: e.target.value
-            }
-        })
-    }
-
-    return (
-      <>
-        {store.token ? (
-          <h3>Login Successful!</h3>
-        ) : (
-          <div>
+  return (
+    <>
+      {store.token ? (
+        <h3>Login Successful!</h3>
+      ) : (
+        <div className="login-container">
+          <Form>
+            <img className="logo" src={logo} alt="Logo" />
             <h1>Employee Login</h1>
-            <Form>
-              <Form.Group>
-                <Form.Label>Username</Form.Label>
-                <Form.Control
-                  name="username"
-                  value={user.username}
-                  placeholder="Enter Your Username"
-                  onChange={handleChange}
-                ></Form.Control>
-                {errorMessage.username}
-              </Form.Group>
-              <Form.Group>
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  name="password"
-                  value={user.password}
-                  placeholder="Enter Your Password"
-                  onChange={handleChange}
-                ></Form.Control>
-                {errorMessage.password}
-              </Form.Group>
-              {errorMessage.apiError}
-              <Button
-                variant="outline-success"
-                type="submit"
-                onClick={handleSubmit}
-              >
-                LOG IN
-              </Button>
-            </Form>
-          </div>
-        )}
-      </>
-    );
-}
+            <Form.Group>
+              <Form.Label>Username</Form.Label>
+              <Form.Control
+                name="username"
+                value={user.username}
+                placeholder="Enter Your Username"
+                onChange={handleChange}
+              ></Form.Control>
+              {errorMessage.username}
+            </Form.Group>
+            <Form.Group>
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                name="password"
+                value={user.password}
+                placeholder="Enter Your Password"
+                onChange={handleChange}
+              ></Form.Control>
+              {errorMessage.password}
+            </Form.Group>
+            {errorMessage.apiError}
+            <Button
+              variant="outline-success"
+              type="submit"
+              onClick={handleSubmit}
+            >
+              LOG IN
+            </Button>
+          </Form>
+        </div>
+      )}
+    </>
+  );
+};
 
-export default Login
+export default Login;
