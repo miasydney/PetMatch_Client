@@ -124,8 +124,8 @@ const Employees = () => {
         <p id="info">
           <BsExclamationTriangleFill />
           Please note that once you delete an employee account, the account will
-          be permanently removed from your database and the user will no longer be able to sign in
-          or access any information.
+          be permanently removed from your database and the user will no longer
+          be able to sign in or access any information.
         </p>
         <div id="employee-table">
           {employees.length > 0 ? (
@@ -140,7 +140,7 @@ const Employees = () => {
                 </thead>
                 <tbody>
                   {employees.map((employee) => (
-                    <tr>
+                    <tr key={employee._id}>
                       <td>{employee.username}</td>
                       <td> {employee.isAdmin ? "Admin" : "Employee"}</td>
                       <td>

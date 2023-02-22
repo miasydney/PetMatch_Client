@@ -13,6 +13,14 @@ const AddEmployee = () => {
     isAdmin: false,
   });
 
+  // Set initial values for errors
+  const [errorMessage, setErrorMessage] = useState({
+    username: null,
+    password: null,
+    isAdmin: null,
+  });
+
+
   // Handle form inputs
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,14 +36,46 @@ const AddEmployee = () => {
   // Post employee data to users on form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .post("/users", employee) // { ...employee, isAdmin: employee.roles === 'Admin' }
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
 
-    console.log(employee);
-    navigate("/employees");
-    // window.location.reload();
+    let haveError = false;
+
+    // Set error messages if username or password not provided
+    if (!employee.username) {
+      setErrorMessage((prevErrorMessage) => {
+        return {
+          ...prevErrorMessage,
+          username: "Please enter a username",
+        };
+      });
+      haveError = true;
+    }
+    if (!employee.password) {
+      setErrorMessage((prevErrorMessage) => {
+        return {
+          ...prevErrorMessage,
+          password: "Please enter a password",
+        };
+      });
+      haveError = true;
+    }
+
+
+    if (!haveError) {
+      setErrorMessage({
+        username: null,
+        password: null,
+        apiError: null,
+      })
+    
+      axios
+        .post("/users", employee) // { ...employee, isAdmin: employee.roles === 'Admin' }
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
+
+      console.log(employee);
+      navigate("/employees");
+      window.location.reload();
+    }
   };
 
   // Note: Add front end validation to form to ensure that all fields are filled
@@ -59,6 +99,7 @@ const AddEmployee = () => {
               placeholder="Enter Employee Username"
               onChange={handleChange}
             ></Form.Control>
+            {errorMessage.username}
           </Form.Group>
           <Form.Group>
             <Form.Label>Password</Form.Label>
@@ -69,6 +110,7 @@ const AddEmployee = () => {
               placeholder="Enter New Employee Password"
               onChange={handleChange}
             ></Form.Control>
+            {errorMessage.password}
           </Form.Group>
           <Form.Group>
             <Form.Label>Role</Form.Label>
@@ -86,6 +128,7 @@ const AddEmployee = () => {
             <Form.Text>
               *Admin users will have access to manage employee accounts.
             </Form.Text>
+            {errorMessage.isAdmin}
           </Form.Group>
 
           <Button
