@@ -18,6 +18,10 @@ const AddAnimal = () => {
     adopted: false,
   });
 
+  // Handle errors
+  const [errors, setErrors] = useState({});
+  const requiredFields = ["name", "animalType", "age", "sex", "medications", "notes", "photo"];
+
   // Handle form inputs
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,11 +32,36 @@ const AddAnimal = () => {
         [name]: value,
       };
     });
+
+    // Clear any error message when the user starts typing again
+    setErrors((prev) => {
+      return {
+        ...prev,
+        [name]: "",
+      };
+    });
+
   };
 
   // Post animal data to API on form submission
   const handleSubmit = (e) => {
     e.preventDefault();
+
+     const newErrors = {};
+
+     // check if required fields are empty
+     requiredFields.forEach((field) => {
+       if (!animal[field]) {
+         newErrors[field] = "This field is required";
+       }
+     });
+
+     // display error messages for any empty fields
+     if (Object.keys(newErrors).length > 0) {
+       setErrors(newErrors);
+       return;
+     }
+
 
     console.log("animal data: ", animal);
     console.log("form submitted");
@@ -61,6 +90,9 @@ const AddAnimal = () => {
               placeholder="Enter Name"
               onChange={handleChange}
             ></Form.Control>
+            {errors.name && (
+              <Form.Text className="text-danger">{errors.name}</Form.Text>
+            )}
           </Form.Group>
           <Form.Group>
             <Form.Label>Type</Form.Label>
@@ -70,6 +102,9 @@ const AddAnimal = () => {
               placeholder="Type"
               onChange={handleChange}
             ></Form.Control>
+            {errors.name && (
+              <Form.Text className="text-danger">{errors.name}</Form.Text>
+            )}
           </Form.Group>
           <Form.Group>
             <Form.Label>Age</Form.Label>
@@ -80,6 +115,9 @@ const AddAnimal = () => {
               placeholder="Age (if unknown, enter closest estimate)"
               onChange={handleChange}
             ></Form.Control>
+            {errors.name && (
+              <Form.Text className="text-danger">{errors.name}</Form.Text>
+            )}
           </Form.Group>
           <Form.Group>
             <Form.Label>Sex</Form.Label>
@@ -89,6 +127,9 @@ const AddAnimal = () => {
               placeholder="Sex"
               onChange={handleChange}
             ></Form.Control>
+            {errors.name && (
+              <Form.Text className="text-danger">{errors.name}</Form.Text>
+            )}
           </Form.Group>
           <Form.Group>
             <Form.Label>Medications</Form.Label>
@@ -100,6 +141,9 @@ const AddAnimal = () => {
               placeholder="Medications (please specify if none required)"
               onChange={handleChange}
             ></Form.Control>
+            {errors.name && (
+              <Form.Text className="text-danger">{errors.name}</Form.Text>
+            )}
           </Form.Group>
           <Form.Group>
             <Form.Label>Notes</Form.Label>
@@ -111,6 +155,9 @@ const AddAnimal = () => {
               placeholder="Notes"
               onChange={handleChange}
             ></Form.Control>
+            {errors.name && (
+              <Form.Text className="text-danger">{errors.name}</Form.Text>
+            )}
           </Form.Group>
           <Form.Group>
             <Form.Label>Image</Form.Label>
@@ -122,6 +169,9 @@ const AddAnimal = () => {
               placeholder="photo"
               onChange={handleChange}
             ></Form.Control>
+            {errors.name && (
+              <Form.Text className="text-danger">{errors.name}</Form.Text>
+            )}
           </Form.Group>
 
           <Button
