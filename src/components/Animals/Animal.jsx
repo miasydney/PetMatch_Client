@@ -57,6 +57,7 @@ const Animal = ({ animal }) => {
     window.location.reload();
   };
 
+
   return (
     <>
       {/* Update animal listing modal */}
@@ -143,11 +144,15 @@ const Animal = ({ animal }) => {
       {/* Display individual animal card */}
       <div key={animal._id} style={{ padding: "1rem" }}>
         <Card>
-          {animal.photo ? (
-            <Card.Img variant="top" src={animal.photo} alt={animal.name} />
-          ) : (
-            <p>"No image to display"</p>
-          )}
+          {/* {animal.photo ? ( */}
+          <Card.Img
+            variant="top"
+            src={`/uploads/${animal.photo}`}
+            alt={animal.name}
+          />
+          {/* ) : ( */}
+          {/* <p>"No image to display"</p> */}
+          {/* )} */}
           <Card.Body>
             <Card.Header>
               <h3>{animal.name}</h3>

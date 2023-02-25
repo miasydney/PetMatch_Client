@@ -1,3 +1,79 @@
+// import React, { useState } from "react";
+// import { Button, Form } from "react-bootstrap";
+// import { useNavigate } from "react-router-dom";
+// import axios from "axios";
+// import BackBtn from "../BackBtn";
+
+// const AddAnimal = () => {
+//   const navigate = useNavigate();
+
+//   const [animal, setAnimal] = useState({
+//     name: "",
+//     animalType: "",
+//     age: "",
+//     sex: "",
+//     medications: "",
+//     notes: "",
+//     photo: "",
+//     adopted: false,
+//   });
+
+//   // Handle errors
+//   const [errors, setErrors] = useState({});
+//   const requiredFields = ["name", "animalType", "age", "sex", "medications", "notes", "photo"];
+
+//   // Handle form inputs
+//   const handleChange = (e) => {
+//     const { name, value, type, files } = e.target;
+
+//     setAnimal((prev) => {
+//       return {
+//         ...prev,
+//         [name]: type ==='file' ? files[0] : value,
+//       };
+//     });
+
+//     // Clear any error message when the user starts typing again
+//     setErrors((prev) => {
+//       return {
+//         ...prev,
+//         [name]: "",
+//       };
+//     });
+
+//   };
+
+//   // Post animal data to API on form submission
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+
+//      const newErrors = {};
+
+//      // check if required fields are empty
+//      requiredFields.forEach((field) => {
+//        if (!animal[field]) {
+//          newErrors[field] = "This field is required";
+//        }
+//      });
+
+//      // display error messages for any empty fields
+//      if (Object.keys(newErrors).length > 0) {
+//        setErrors(newErrors);
+//        return;
+//      }
+
+
+//     console.log("animal data: ", animal);
+//     console.log("form submitted");
+
+//     axios
+//       .post("/animals", animal)
+//       .then((res) => console.log(res))
+//       .catch((err) => console.log(err));
+
+//     // navigate("/animals");
+//   };
+
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
@@ -20,16 +96,24 @@ const AddAnimal = () => {
 
   // Handle errors
   const [errors, setErrors] = useState({});
-  const requiredFields = ["name", "animalType", "age", "sex", "medications", "notes", "photo"];
+  const requiredFields = [
+    "name",
+    "animalType",
+    "age",
+    "sex",
+    "medications",
+    "notes",
+    "photo",
+  ];
 
   // Handle form inputs
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, files } = e.target;
 
     setAnimal((prev) => {
       return {
         ...prev,
-        [name]: value,
+        [name]: type === "file" ? files[0] : value,
       };
     });
 
@@ -40,38 +124,46 @@ const AddAnimal = () => {
         [name]: "",
       };
     });
-
   };
 
   // Post animal data to API on form submission
   const handleSubmit = (e) => {
     e.preventDefault();
 
-     const newErrors = {};
+    const newErrors = {};
 
-     // check if required fields are empty
-     requiredFields.forEach((field) => {
-       if (!animal[field]) {
-         newErrors[field] = "This field is required";
-       }
-     });
+    // check if required fields are empty
+    requiredFields.forEach((field) => {
+      if (!animal[field]) {
+        newErrors[field] = "This field is required";
+      }
+    });
 
-     // display error messages for any empty fields
-     if (Object.keys(newErrors).length > 0) {
-       setErrors(newErrors);
-       return;
-     }
+    // display error messages for any empty fields
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
 
+    const formData = new FormData();
+
+    formData.append("name", animal.name);
+    formData.append("animalType", animal.animalType);
+    formData.append("age", animal.age);
+    formData.append("sex", animal.sex);
+    formData.append("medications", animal.medications);
+    formData.append("notes", animal.notes);
+    formData.append("photo", animal.photo);
 
     console.log("animal data: ", animal);
     console.log("form submitted");
 
     axios
-      .post("/animals", animal)
+      .post("/animals", formData)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
 
-    navigate("/animals");
+    // navigate("/animals");
   };
 
   return (
@@ -81,7 +173,7 @@ const AddAnimal = () => {
         {/* Add New Animal Form */}
         <h1>Add New Animal</h1>
         <p>Please enter in all relevant information about the animal.</p>
-        <Form>
+        <Form encType="multipart/formdata">
           <Form.Group>
             <Form.Label>Animal Name</Form.Label>
             <Form.Control
@@ -162,11 +254,11 @@ const AddAnimal = () => {
           <Form.Group>
             <Form.Label>Image</Form.Label>
             <Form.Control
-              // type="file"
-              // accept="image/*"
+              type="file"
+              accept="image/*"
               name="photo"
-              value={animal.photo}
-              placeholder="photo"
+              // value={animal.photo}
+              // placeholder="photo"
               onChange={handleChange}
             ></Form.Control>
             {errors.name && (
