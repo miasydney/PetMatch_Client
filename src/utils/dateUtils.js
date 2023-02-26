@@ -1,3 +1,4 @@
+// Return today's date, formatted correctly
 function getCurrentDate() {
   const dateOptions = { weekday: "long", day: "numeric", month: "long" };
   const today = new Date();

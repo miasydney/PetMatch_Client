@@ -1,79 +1,3 @@
-// import React, { useState } from "react";
-// import { Button, Form } from "react-bootstrap";
-// import { useNavigate } from "react-router-dom";
-// import axios from "axios";
-// import BackBtn from "../BackBtn";
-
-// const AddAnimal = () => {
-//   const navigate = useNavigate();
-
-//   const [animal, setAnimal] = useState({
-//     name: "",
-//     animalType: "",
-//     age: "",
-//     sex: "",
-//     medications: "",
-//     notes: "",
-//     photo: "",
-//     adopted: false,
-//   });
-
-//   // Handle errors
-//   const [errors, setErrors] = useState({});
-//   const requiredFields = ["name", "animalType", "age", "sex", "medications", "notes", "photo"];
-
-//   // Handle form inputs
-//   const handleChange = (e) => {
-//     const { name, value, type, files } = e.target;
-
-//     setAnimal((prev) => {
-//       return {
-//         ...prev,
-//         [name]: type ==='file' ? files[0] : value,
-//       };
-//     });
-
-//     // Clear any error message when the user starts typing again
-//     setErrors((prev) => {
-//       return {
-//         ...prev,
-//         [name]: "",
-//       };
-//     });
-
-//   };
-
-//   // Post animal data to API on form submission
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-
-//      const newErrors = {};
-
-//      // check if required fields are empty
-//      requiredFields.forEach((field) => {
-//        if (!animal[field]) {
-//          newErrors[field] = "This field is required";
-//        }
-//      });
-
-//      // display error messages for any empty fields
-//      if (Object.keys(newErrors).length > 0) {
-//        setErrors(newErrors);
-//        return;
-//      }
-
-
-//     console.log("animal data: ", animal);
-//     console.log("form submitted");
-
-//     axios
-//       .post("/animals", animal)
-//       .then((res) => console.log(res))
-//       .catch((err) => console.log(err));
-
-//     // navigate("/animals");
-//   };
-
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
@@ -145,8 +69,8 @@ const AddAnimal = () => {
       return;
     }
 
+    // Create form data object and append animal properties to it
     const formData = new FormData();
-
     formData.append("name", animal.name);
     formData.append("animalType", animal.animalType);
     formData.append("age", animal.age);
@@ -156,14 +80,15 @@ const AddAnimal = () => {
     formData.append("photo", animal.photo);
 
     console.log("animal data: ", animal);
-    console.log("form submitted");
+    console.log("Form Submitted");
 
+    // Post form data to animals endpoint
     axios
       .post("/animals", formData)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
 
-    // navigate("/animals");
+    navigate("/animals");
   };
 
   return (
@@ -257,8 +182,6 @@ const AddAnimal = () => {
               type="file"
               accept="image/*"
               name="photo"
-              // value={animal.photo}
-              // placeholder="photo"
               onChange={handleChange}
             ></Form.Control>
             {errors.name && (
