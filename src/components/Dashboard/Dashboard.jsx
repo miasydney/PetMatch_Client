@@ -6,6 +6,7 @@ import getEarliestAnimals from "../../utils/animalUtils";
 import { useGlobalContext } from "../../utils/globalStateContext";
 import "./dashboard.css"
 import { FaPlus, FaUserPlus, FaThList, FaDog } from "react-icons/fa";
+import placeholder from "../../assets/placeholder.jpg";
 
 
 const Dashboard = () => {
@@ -79,12 +80,15 @@ const Dashboard = () => {
                 {earliestAnimals.map((animal) => (
                   <Card key={animal._id}>
                     <Card.Body>
-                      <Card.Img variant="top" src={animal.photo} />
+                      <Card.Img variant="top" src={
+                        animal.photo.filename
+                          ? `http://localhost:3500/uploads/${animal.photo.filename}`
+                          : `${placeholder}`
+                          }
+                        thumbnail />
                       <Card.Title>{animal.name}</Card.Title>
                       <Card.Text>Age: {animal.age}</Card.Text>
                       <Card.Text>Notes: {animal.notes}</Card.Text>
-
-                      {/* <Animal animal={animal} />; */}
                     </Card.Body>
                   </Card>
                 ))}

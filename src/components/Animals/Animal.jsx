@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Card, Form, Modal } from "react-bootstrap";
+import { Button, Card, Form, Image, Modal } from "react-bootstrap";
 import { useState } from 'react';
 import axios from 'axios';
 import placeholder from "../../assets/placeholder.jpg";
@@ -65,10 +65,15 @@ const Animal = ({ animal }) => {
       {/* Update animal listing modal */}
       <Modal show={show} onHide={handleClose} backdrop="static" size="lg">
         <Modal.Header closeButton>
-          <Modal.Title>Update Animal Listing</Modal.Title>
+          <Modal.Title>Updating {animal.name}'s Animal Listing</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
+            <Image
+              src={`http://localhost:3500/uploads/${animal.photo.filename}`}
+              thumbnail
+              rounded
+            ></Image>
             <Form.Group>
               <Form.Label>Name</Form.Label>
               <Form.Control
@@ -114,13 +119,6 @@ const Animal = ({ animal }) => {
                 value={updatedAnimal.notes ? updatedAnimal.notes : ""}
                 onChange={handleChange}
               />
-              <Form.Label>Photo</Form.Label>
-              <Form.Control
-                placeholder="Photo"
-                name="photo"
-                value={updatedAnimal.photo ? updatedAnimal.photo : ""}
-                onChange={handleChange}
-              />
               <Form.Label>Adoption Status</Form.Label>
               <Form.Select
                 name="adopted"
@@ -154,6 +152,7 @@ const Animal = ({ animal }) => {
                 : `${placeholder}`
             }
             alt={animal.name}
+            rounded
           />
           <Card.Body>
             <Card.Header>
