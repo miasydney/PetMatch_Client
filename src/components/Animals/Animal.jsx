@@ -2,6 +2,8 @@ import React from 'react'
 import { Button, Card, Form, Modal } from "react-bootstrap";
 import { useState } from 'react';
 import axios from 'axios';
+import placeholder from "../../assets/placeholder.jpg";
+
 
 const Animal = ({ animal }) => {
   const [updatedAnimal, setUpdatedAnimal] = useState({});
@@ -144,20 +146,15 @@ const Animal = ({ animal }) => {
       {/* Display individual animal card */}
       <div key={animal._id} style={{ padding: "1rem" }}>
         <Card>
-          {/* {animal.photo ? ( */}
-
           <Card.Img
             variant="top"
             src={
               animal.photo.filename
-                ? `/uploads/${animal.photo.filename}`
-                : "https://pro2-bar-s3-cdn-cf.myportfolio.com/c728a553-9706-473c-adca-fa2ea3652db5/12e68d7c-545d-4718-a8ea-fa18b078ca94_rw_1200.jpg?h=c457494d606f389562232d85f277cdfd"
+                ? `http://localhost:3500/uploads/${animal.photo.filename}`
+                : `${placeholder}`
             }
             alt={animal.name}
           />
-          {/* ) : ( */}
-          {/* <p>"No image to display"</p> */}
-          {/* )} */}
           <Card.Body>
             <Card.Header>
               <h3>{animal.name}</h3>
