@@ -145,9 +145,14 @@ const Animal = ({ animal }) => {
       <div key={animal._id} style={{ padding: "1rem" }}>
         <Card>
           {/* {animal.photo ? ( */}
+
           <Card.Img
             variant="top"
-            src={`/uploads/${animal.photo}`}
+            src={
+              animal.photo.filename
+                ? `/uploads/${animal.photo.filename}`
+                : "https://pro2-bar-s3-cdn-cf.myportfolio.com/c728a553-9706-473c-adca-fa2ea3652db5/12e68d7c-545d-4718-a8ea-fa18b078ca94_rw_1200.jpg?h=c457494d606f389562232d85f277cdfd"
+            }
             alt={animal.name}
           />
           {/* ) : ( */}
