@@ -92,9 +92,10 @@ const AddEmployee = () => {
         </p>
         <Form>
           <Form.Group>
-            <Form.Label>Username</Form.Label>
+            <Form.Label htmlFor="username">Username</Form.Label>
             <Form.Control
               name="username"
+              id="username"
               value={employee.username}
               placeholder="Enter Employee Username"
               onChange={handleChange}
@@ -102,9 +103,10 @@ const AddEmployee = () => {
             {errorMessage.username}
           </Form.Group>
           <Form.Group>
-            <Form.Label>Password</Form.Label>
+            <Form.Label htmlFor="password">Password</Form.Label>
             <Form.Control
               type="password"
+              id="password"
               name="password"
               value={employee.password}
               placeholder="Enter New Employee Password"
@@ -113,9 +115,10 @@ const AddEmployee = () => {
             {errorMessage.password}
           </Form.Group>
           <Form.Group>
-            <Form.Label>Role</Form.Label>
+            <Form.Label htmlFor="role">Role</Form.Label>
             <Form.Select
               name="isAdmin"
+              id="role"
               value={employee.isAdmin}
               onChange={(e) =>
                 setEmployee({ ...employee, isAdmin: e.target.value === "true" })
