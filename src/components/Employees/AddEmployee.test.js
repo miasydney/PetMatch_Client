@@ -8,8 +8,7 @@ jest.mock("axios");
 
 describe("AddEmployee component", () => {
 
-
-    it("renders correctly", () => {
+    it("renders AddEmployee correctly with expected title and fields", () => {
     // Render AddEmployee component inside router 
     render(
       <BrowserRouter>
