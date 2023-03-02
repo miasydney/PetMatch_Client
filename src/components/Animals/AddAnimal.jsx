@@ -100,9 +100,9 @@ const AddAnimal = () => {
         <p>Please enter in all relevant information about the animal.</p>
         <Form encType="multipart/formdata">
           <Form.Group>
-            <Form.Label>Animal Name</Form.Label>
+            <Form.Label htmlFor="name">Name</Form.Label>
             <Form.Control
-              name="name"
+              id="name"
               value={animal.name}
               placeholder="Enter Name"
               onChange={handleChange}
@@ -112,9 +112,10 @@ const AddAnimal = () => {
             )}
           </Form.Group>
           <Form.Group>
-            <Form.Label>Type</Form.Label>
+            <Form.Label htmlFor="type">Type</Form.Label>
             <Form.Control
               name="animalType"
+              id="type"
               value={animal.animalType}
               placeholder="Type"
               onChange={handleChange}
@@ -124,9 +125,10 @@ const AddAnimal = () => {
             )}
           </Form.Group>
           <Form.Group>
-            <Form.Label>Age</Form.Label>
+            <Form.Label htmlFor="age">Age</Form.Label>
             <Form.Control
               name="age"
+              id="age"
               type="number"
               value={animal.age}
               placeholder="Age (if unknown, enter closest estimate)"
@@ -136,10 +138,11 @@ const AddAnimal = () => {
               <Form.Text className="text-danger">{errors.name}</Form.Text>
             )}
           </Form.Group>
-          <Form.Group>
-            <Form.Label>Sex</Form.Label>
+          <Form.Group htmlFor="sex">
+            <Form.Label htmlFor="sex">Sex</Form.Label>
             <Form.Control
               name="sex"
+              id="sex"
               value={animal.sex}
               placeholder="Sex"
               onChange={handleChange}
@@ -149,11 +152,12 @@ const AddAnimal = () => {
             )}
           </Form.Group>
           <Form.Group>
-            <Form.Label>Medications</Form.Label>
+            <Form.Label htmlFor="medications">Medications</Form.Label>
             <Form.Control
               as="textarea"
               rows={3}
               name="medications"
+              id="medications"
               value={animal.medications}
               placeholder="Medications (please specify if none required)"
               onChange={handleChange}
@@ -163,11 +167,12 @@ const AddAnimal = () => {
             )}
           </Form.Group>
           <Form.Group>
-            <Form.Label>Notes</Form.Label>
+            <Form.Label htmlFor="notes">Notes</Form.Label>
             <Form.Control
               as="textarea"
               rows={15}
               name="notes"
+              id="notes"
               value={animal.notes}
               placeholder="Notes"
               onChange={handleChange}
@@ -177,11 +182,12 @@ const AddAnimal = () => {
             )}
           </Form.Group>
           <Form.Group>
-            <Form.Label>Image</Form.Label>
+            <Form.Label htmlFor="image">Image</Form.Label>
             <Form.Control
               type="file"
               accept="image/*"
               name="photo"
+              id="image"
               onChange={handleChange}
             ></Form.Control>
             {errors.name && (

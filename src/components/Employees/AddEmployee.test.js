@@ -93,5 +93,10 @@ describe("AddEmployee component", () => {
           isAdmin: false,
         });
       });
+
+      // Check that successfully reroutes to the employees link after new employee posted
+      await waitFor(() => {
+        expect(window.location.href).toContain("/employees");
+      });
     });
 });
