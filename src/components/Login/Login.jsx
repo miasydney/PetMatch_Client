@@ -152,9 +152,10 @@ const Login = () => {
             <img className="logo" src={logo} alt="Logo" />
             <h1>Employee Login</h1>
             <Form.Group>
-              <Form.Label>Username</Form.Label>
+              <Form.Label htmlFor="username">Username</Form.Label>
               <Form.Control
                 name="username"
+                id="username"
                 value={user.username}
                 placeholder="Enter Your Username"
                 onChange={handleChange}
@@ -162,10 +163,11 @@ const Login = () => {
               {errorMessage.username}
             </Form.Group>
             <Form.Group>
-              <Form.Label>Password</Form.Label>
+              <Form.Label htmlFor="password">Password</Form.Label>
               <Form.Control
                 type="password"
                 name="password"
+                id="password"
                 value={user.password}
                 placeholder="Enter Your Password"
                 onChange={handleChange}
