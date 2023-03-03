@@ -102,6 +102,7 @@ const AddAnimal = () => {
           <Form.Group>
             <Form.Label htmlFor="name">Name</Form.Label>
             <Form.Control
+              name="name"
               id="name"
               value={animal.name}
               placeholder="Enter Name"
