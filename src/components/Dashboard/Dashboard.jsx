@@ -89,6 +89,7 @@ const Dashboard = () => {
                             : `${placeholder}`
                         }
                         thumbnail
+                        crossorigin="anonymous"
                       />
                       <Card.Title>{animal.name}</Card.Title>
                       <Card.Text>Age: {animal.age}</Card.Text>

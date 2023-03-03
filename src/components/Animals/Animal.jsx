@@ -72,6 +72,7 @@ const Animal = ({ animal, animals, setAnimals }) => {
           <Form>
             <Image
               src={`https://petmatch-production-6ea7.up.railway.app/uploads/${animal.photo.filename}`}
+              crossorigin="anonymous"
               thumbnail
               rounded
             ></Image>
@@ -153,6 +154,7 @@ const Animal = ({ animal, animals, setAnimals }) => {
                 : `${placeholder}`
             }
             alt={animal.name}
+            crossorigin="anonymous"
             rounded
           />
           <Card.Body>
