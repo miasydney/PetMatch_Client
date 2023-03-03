@@ -51,7 +51,7 @@ const AddAnimal = () => {
   };
 
   // Post animal data to API on form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const newErrors = {};
@@ -82,13 +82,13 @@ const AddAnimal = () => {
     console.log("animal data: ", animal);
     console.log("Form Submitted");
 
-    // Post form data to animals endpoint
-    axios
-      .post("/animals", formData)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
-
-    navigate("/animals");
+      try {
+        const response = await axios.post("/animals", formData);
+        console.log(response);
+        navigate("/animals");
+      } catch (error) {
+        console.error(error);
+      }
   };
 
   return (
