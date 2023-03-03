@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Card, ListGroup, CardGroup } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import getCurrentDate from "../../utils/dateUtils.js";
 import getEarliestAnimals from "../../utils/animalUtils";
 import { useGlobalContext } from "../../utils/globalStateContext";
@@ -44,11 +45,11 @@ const Dashboard = () => {
             <ListGroup variant="flush">
               <ListGroup.Item>
                 <FaDog />
-                <a href="/animals"> View all animals</a>
+                <Link to="/animals">View all animals</Link>
               </ListGroup.Item>
               <ListGroup.Item>
                 <FaPlus />
-                <a href="/add-animal">Add new animal</a>
+                <Link to="/add-animal">Add new animal</Link>
               </ListGroup.Item>
 
               {/* If user is Admin, allow manage employee options */}
@@ -56,11 +57,11 @@ const Dashboard = () => {
                 <>
                   <ListGroup.Item>
                     <FaThList />
-                    <a href="/employees">Manage All Employee accounts</a>
+                    <Link to="/employees">Manage All Employee accounts</Link>
                   </ListGroup.Item>
                   <ListGroup.Item>
                     <FaUserPlus />
-                    <a href="/add-employee">Add New Employee account</a>
+                    <Link to="/add-employee">Add New Employee account</Link>
                   </ListGroup.Item>
                 </>
               )}
@@ -80,12 +81,15 @@ const Dashboard = () => {
                 {earliestAnimals.map((animal) => (
                   <Card key={animal._id}>
                     <Card.Body>
-                      <Card.Img variant="top" src={
-                        animal.photo.filename
-                          ? `http://localhost:3500/uploads/${animal.photo.filename}`
-                          : `${placeholder}`
-                          }
-                        thumbnail />
+                      <Card.Img
+                        variant="top"
+                        src={
+                          animal.photo.filename
+                            ? `http://localhost:3500/uploads/${animal.photo.filename}`
+                            : `${placeholder}`
+                        }
+                        thumbnail
+                      />
                       <Card.Title>{animal.name}</Card.Title>
                       <Card.Text>Age: {animal.age}</Card.Text>
                       <Card.Text>Notes: {animal.notes}</Card.Text>
