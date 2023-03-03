@@ -51,8 +51,15 @@ const Employees = () => {
       .patch(`/users/${updatedEmployee.id}`, updatedEmployee)
       .then(() => {
         handleCloseEditModal();
-        // window.location.reload();
-        navigate("/employees")
+        const updatedEmployees = employees.map((employee) => {
+          if (employee.id === updatedEmployee.id) {
+            return updatedEmployee;
+          } else {
+            return employee;
+          }
+        });
+        setEmployees(updatedEmployees);
+        navigate("/employees");
       })
       .catch((err) => console.log(err));
   };
