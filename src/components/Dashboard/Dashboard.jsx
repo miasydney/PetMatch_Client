@@ -85,7 +85,7 @@ const Dashboard = () => {
                         variant="top"
                         src={
                           animal.photo.filename
-                            ? `http://localhost:3500/uploads/${animal.photo.filename}`
+                            ? `https://petmatch-production-6ea7.up.railway.app/uploads/${animal.photo.filename}`
                             : `${placeholder}`
                         }
                         thumbnail

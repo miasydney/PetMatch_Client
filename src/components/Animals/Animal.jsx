@@ -71,7 +71,7 @@ const Animal = ({ animal, animals, setAnimals }) => {
         <Modal.Body>
           <Form>
             <Image
-              src={`http://localhost:3500/uploads/${animal.photo.filename}`}
+              src={`https://petmatch-production-6ea7.up.railway.app/uploads/${animal.photo.filename}`}
               thumbnail
               rounded
             ></Image>
