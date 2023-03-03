@@ -53,7 +53,7 @@ const Employees = () => {
         console.log(res);
       // Set updated employee in setEmployees state
       const updatedEmployees = employees.map((employee) => {
-        if (employee._id === updatedEmployee._id) {
+        if (employee.id === updatedEmployee.id) {
           return updatedEmployee;
         } else {
           return employee;
@@ -72,12 +72,10 @@ const Employees = () => {
       .then((res) => {
         console.log(res);
         setEmployees((prev) => {
-          return prev.filter((employee) => employee.id !== id);
+          return prev.filter((employee) => employee._id !== id);
         });
       })
       .catch((err) => console.log(err));
-      
-    window.location.reload();
   };
 
   return (
