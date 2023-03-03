@@ -10,7 +10,7 @@
     ]
   },
   "private": true,
-  "proxy": "https://petmatchofficial.netlify.app",
+  "proxy": "https://petmatch-production-6ea7.up.railway.app",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/user-event": "^13.5.0",
