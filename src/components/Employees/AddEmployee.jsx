@@ -59,26 +59,22 @@ const AddEmployee = () => {
       haveError = true;
     }
 
-
     if (!haveError) {
       setErrorMessage({
         username: null,
         password: null,
         apiError: null,
-      })
-    
+      });
+
       axios
         .post("/users", employee) // { ...employee, isAdmin: employee.roles === 'Admin' }
-        .then((res) => console.log(res))
+        .then((res) => {
+          console.log(res);
+          navigate("/employees");
+        })
         .catch((err) => console.log(err));
-
-      console.log(employee);
-      navigate("/employees");
-      window.location.reload();
     }
   };
-
-  // Note: Add front end validation to form to ensure that all fields are filled
 
   return (
     <>

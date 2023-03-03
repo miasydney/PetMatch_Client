@@ -82,13 +82,13 @@ const AddAnimal = () => {
     console.log("animal data: ", animal);
     console.log("Form Submitted");
 
-      try {
-        const response = await axios.post("/animals", formData);
-        console.log(response);
-        navigate("/animals");
-      } catch (error) {
-        console.error(error);
-      }
+    try {
+      const response = await axios.post("/animals", formData);
+      console.log(response);
+      navigate("/animals");
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
