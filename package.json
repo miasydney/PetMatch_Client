@@ -10,7 +10,7 @@
     ]
   },
   "private": true,
-  "proxy": "http://localhost:3500",
+  "proxy": "https://petmatch-production-6ea7.up.railway.app",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/user-event": "^13.5.0",
