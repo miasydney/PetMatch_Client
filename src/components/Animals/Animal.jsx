@@ -3,10 +3,11 @@ import { Button, Card, Form, Image, Modal } from "react-bootstrap";
 import { useState } from 'react';
 import axios from 'axios';
 import placeholder from "../../assets/placeholder.jpg";
-
+import { useNavigate, } from 'react-router-dom';
 
 const Animal = ({ animal, animals, setAnimals }) => {
   const [updatedAnimal, setUpdatedAnimal] = useState({});
+  const navigate = useNavigate()
 
   // Edit modal states
   const [show, setShow] = useState(false);
@@ -52,13 +53,18 @@ const Animal = ({ animal, animals, setAnimals }) => {
     // Send updated animal information to API
     axios
       .patch(`/animals/${updatedAnimal._id}`, updatedAnimal)
-      .then((res) => console.log(res))
+      .then((res) => {
+        console.log(res);
+        setAnimals(
+          animals.map((animal) =>
+            animal._id === updatedAnimal._id ? res.data : animal
+          )
+        );
+      })
       .catch((err) => console.log(err));
-
-    console.log("animal updated");
-
-    handleClose();
-    window.location.reload();
+      console.log("animal updated");
+      handleClose();
+      navigate('/animals')
   };
 
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Button, Form, Modal, Card, Table } from "react-bootstrap";
 import axios from 'axios'
 import { FaUserPlus } from "react-icons/fa";
@@ -7,7 +7,6 @@ import { BsExclamationTriangleFill } from "react-icons/bs";
 import "./employees.css"
 
 const Employees = () => {
-  const navigate = useNavigate();
 
   const [employees, setEmployees] = useState([]);
 
@@ -47,19 +46,21 @@ const Employees = () => {
 
   const saveUpdatedEmployee = () => {
     console.log(updatedEmployee)
+    // Edit employee account after save
     axios
       .patch(`/users/${updatedEmployee.id}`, updatedEmployee)
-      .then(() => {
-        handleCloseEditModal();
-        const updatedEmployees = employees.map((employee) => {
-          if (employee.id === updatedEmployee.id) {
-            return updatedEmployee;
-          } else {
-            return employee;
-          }
-        });
+      .then((res) => {
+        console.log(res);
+      // Set updated employee in setEmployees state
+      const updatedEmployees = employees.map((employee) => {
+        if (employee._id === updatedEmployee._id) {
+          return updatedEmployee;
+        } else {
+          return employee;
+        }
+      });
         setEmployees(updatedEmployees);
-        navigate("/employees");
+        handleCloseEditModal();
       })
       .catch((err) => console.log(err));
   };
@@ -74,7 +75,7 @@ const Employees = () => {
           return prev.filter((employee) => employee.id !== id);
         });
       })
-        .catch((err) => console.log(err));
+      .catch((err) => console.log(err));
       
     window.location.reload();
   };
