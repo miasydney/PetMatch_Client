@@ -56,7 +56,7 @@ function App() {
         element={store.token ? <MainPage /> : <Login />}
         errorElement={<NotFound />}
       >
-        <Route path="add-animal" element={<AddAnimal />} />
+        <Route path="/add-animal" element={<AddAnimal />} />
         <Route path="/animals" element={<AnimalList />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/employees" element={<Employees />} />
