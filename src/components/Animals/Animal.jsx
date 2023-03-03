@@ -148,7 +148,7 @@ const Animal = ({ animal }) => {
             variant="top"
             src={
               animal.photo.filename
-                ? `https://petmatch-production-6ea7.up.railway.app/uploads/${animal.photo.filename}`
+                ? `/uploads/${animal.photo.filename}`
                 : `${placeholder}`
             }
             alt={animal.name}
