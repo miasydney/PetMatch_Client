@@ -5,7 +5,7 @@ import axios from 'axios';
 import placeholder from "../../assets/placeholder.jpg";
 
 
-const Animal = ({ animal }) => {
+const Animal = ({ animal, animals, setAnimals }) => {
   const [updatedAnimal, setUpdatedAnimal] = useState({});
 
   // Edit modal states
@@ -21,16 +21,18 @@ const Animal = ({ animal }) => {
 
   // Delete animal listing
   const deleteAnimal = (id) => {
-    console.log(id);
+  console.log(id);
 
-    axios
-      .delete(`/animals/${id}`)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
-
-    window.location.reload();
-  };
-
+  axios
+    .delete(`/animals/${id}`)
+    .then((res) => {
+      console.log(res);
+      // remove the deleted animal from the list
+      setAnimals(animals.filter((animal) => animal._id !== id));
+    })
+    .catch((err) => console.log(err));
+};
+  
   // Handle form change when editing animal listing
   const handleChange = (e) => {
     const { name, value } = e.target;

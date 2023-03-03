@@ -23,7 +23,14 @@ const AnimalList = () => {
         {animals.length > 0 ? (
           <>
             {animals.map((animal) => {
-              return <Animal key={animal._id} animal={animal} />;
+              return (
+                <Animal
+                  key={animal._id}
+                  animal={animal}
+                  animals={animals}
+                  setAnimals={setAnimals}
+                />
+              );
             })}
           </>
         ) : (
