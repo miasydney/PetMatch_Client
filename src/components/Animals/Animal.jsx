@@ -20,7 +20,6 @@ const Animal = ({ animal, animals, setAnimals }) => {
 
   // Delete animal listing
   const deleteAnimal = (id) => {
-  console.log(id);
 
   axios
     .delete(`/animals/${id}`)

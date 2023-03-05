@@ -13,16 +13,6 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <App />
-    {/* <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/add-animal" element={<AddAnimal />} />
-        <Route path="/animals" element={<AnimalList />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/employees" element={<Employees />} />
-        <Route path="/add-employee" element={<AddEmployee />} />
-      </Routes>
-    </BrowserRouter> */}
   </React.StrictMode>
 );
 

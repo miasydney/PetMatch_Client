@@ -36,7 +36,6 @@ const AddEmployee = () => {
   // Post employee data to users on form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-
     let haveError = false;
 
     // Set error messages if username or password not provided
@@ -67,7 +66,7 @@ const AddEmployee = () => {
       });
 
       axios
-        .post("/users", employee) // { ...employee, isAdmin: employee.roles === 'Admin' }
+        .post("/users", employee)
         .then((res) => {
           console.log(res);
           navigate("/employees");

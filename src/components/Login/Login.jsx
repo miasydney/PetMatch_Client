@@ -22,14 +22,12 @@ const Login = () => {
     apiError: null,
   });
 
-  // access dispatch method to be able to update states in global context
+  // Access dispatch method to be able to update states in global context
   const { store, dispatch } = useGlobalContext();
 
   // Sign in user on form submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(user); // for testing. remove when testing complete!
-
     let haveError = false;
 
     // Set error messages if username or password not provided
